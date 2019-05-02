@@ -1,0 +1,10 @@
+bin/
+.gradle/
+.idea/
+.metadata/
+build/
+.classpath
+.settings
+.project
+parallel-api-logs/
+RemoteSystemsTempFiles/
