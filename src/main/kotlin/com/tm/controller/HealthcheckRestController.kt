@@ -23,23 +23,10 @@ class HealthcheckRestController {
     @RequestMapping(value = [CtrlConst.MAP_HEALTHCHECK], method = [RequestMethod.GET])
     @ResponseBody
     @CrossOrigin
+    @ResponseStatus(HttpStatus.OK)
     @Throws(Exception::class)
     fun checkHealthy(): String{
         return "OK"
-    }
-
-    @RequestMapping(value = ["/count"], method = [RequestMethod.POST])
-    @ResponseBody
-    fun count(@RequestBody req: TaskDeleteResponseDto?): Int {
-        // オブジェクトの空、および長さをチェックしたことをコンパイラが追跡して、結果を返却できる
-        if(req?.taskId == null || req.taskId.length < 0) {
-            throw TaskManagerErrorRuntimeException()
-        }
-
-        print(ObjectMapper().writeValueAsString(req))
-
-        return req.taskId.length
-
     }
 
 }

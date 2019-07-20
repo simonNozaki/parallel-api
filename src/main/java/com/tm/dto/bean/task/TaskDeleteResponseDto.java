@@ -8,6 +8,21 @@ import com.tm.dto.common.Errors;
 public class TaskDeleteResponseDto {
 
     /**
+     * デフォルトコンストラクタ、引数なし
+     */
+    public TaskDeleteResponseDto() { }
+
+    /**
+     * デフォルトコンストラクタ、引数あり
+     * @param taskId
+     * @param errors
+     */
+    public TaskDeleteResponseDto(String taskId, Errors errors) {
+        this.taskId = taskId;
+        this.errors = errors;
+    }
+
+    /**
      * タスクID
      */
     private String taskId;

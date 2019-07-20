@@ -37,24 +37,23 @@ class TaskDeleteRestController : BaseRestController() {
         //------------------------------------
         // 入力内容の検査
         //------------------------------------
-        InputInspector.of<TaskDeleteRequestDto>(req)
+        var errors: Errors = InputInspector.of<TaskDeleteRequestDto>(req)
                 .logInput<TaskDeleteRequestDto>(req)
                 .isNull<String>(req?.taskId, TaskManagerErrorCode.ERR210001.code)
                 .violateSpecificLength<String>(req?.taskId, AppConst.TASK_ID_LENGTH, TaskManagerErrorCode.ERR210003.code)
                 .build()
-                .codes.isNotEmpty()?: throw TaskManagerErrorRuntimeException()
+
+        //------------------------------------
+        // エラーがある場合レスポンス作成処理
+        //------------------------------------
+        if(errors.codes.isNotEmpty()) throw TaskManagerErrorRuntimeException(errors);
 
         //------------------------------------
         // サービスクラスの実行およびレスポンス処理
         //------------------------------------
         return BaseRestController.responseProcessBuilder<TaskDeleteResponseDto>()
                 .executeService<String>(taskDeleteServcie.delete(req))
-                .map<ServiceOut<String>, TaskDeleteResponseDto> { taskId: String, error: Errors ->
-                    val res = TaskDeleteResponseDto()
-                    res.taskId = taskId
-                    res.errors = error
-                    res
-                }
+                .map<ServiceOut<String>, TaskDeleteResponseDto> { taskId: String, error: Errors -> TaskDeleteResponseDto(taskId, error)}
                 .log<TaskDeleteResponseDto>()
                 .apply()
     }
