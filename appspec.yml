@@ -1,0 +1,10 @@
+version: 0.0
+os: linux
+files:
+  - source: parallel-api.war
+    destination: /workspace/bin/apache-tomcat-8.0.53/webapps
+hooks:
+  BeforeInstall:
+    - location: script/stop-tomcat.sh
+  ApplicationStart:
+    - location: script/start-tomcat.sh

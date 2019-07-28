@@ -1,0 +1,29 @@
+version: 0.2
+
+phases:
+  install:
+    runtime-versions:
+      java: openjdk8
+    commands:
+      - echo ///////////////// Construct build runtime for Gradle  /////////////////
+      - add-apt-repository ppa:cwchien/gradle
+      - apt-get update -y
+      - apt-get install -y gradle
+      - gradle -v
+  pre_build:
+    commands:
+  build:
+    commands:
+      - echo ///////////////// Build started on `date` /////////////////
+      - gradle build -x test
+  post_build:
+    commands:
+      - echo ///////////////// Start being ready to zip for deploy ... /////////////////
+      - cp build/libs/parallel-api.war .
+      - echo ///////////////// Build completed on `date` /////////////////
+artifacts:
+  files:
+    - parallel-api.war
+    - appspec.yml
+    - script/start-tomcat.sh
+    - script/stop-tomcat.sh

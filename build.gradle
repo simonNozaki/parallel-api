@@ -186,10 +186,3 @@ task migrateUtdb(type: org.flywaydb.gradle.task.FlywayMigrateTask) {
     baselineDescription = 'マイグレーション初版です.'
 }
 
-//----------------------------------------------------
-// アプリ実行
-//----------------------------------------------------
-/**
- * gradle bootRunのプロファイル指定。
- */
-def profiles = 'dev'
