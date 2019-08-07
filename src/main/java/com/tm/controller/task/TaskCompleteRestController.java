@@ -1,6 +1,8 @@
 package com.tm.controller.task;
 
 import com.tm.consts.AppConst;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -28,6 +30,7 @@ import com.tm.util.ObjectUtil;
  */
 @RestController
 @RequestMapping(CtrlConst.URI_API_VERSION)
+@Api(value = "task", tags = { "task" })
 public class TaskCompleteRestController extends BaseRestController {
 
     @Autowired
@@ -37,6 +40,7 @@ public class TaskCompleteRestController extends BaseRestController {
     @ResponseBody
     @CrossOrigin
     @ResponseStatus(HttpStatus.OK)
+    @ApiOperation(value="タスクを完了します。", tags = { "task" })
     public TaskCompleteResponseDto complete(@RequestBody TaskCompleteRequestDto req) throws Exception {
         //------------------------------------
         // 入力内容の検査

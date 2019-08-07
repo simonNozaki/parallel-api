@@ -3,6 +3,8 @@ package com.tm.controller.user;
 import java.util.stream.Stream;
 
 import com.tm.consts.AppConst;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -31,6 +33,7 @@ import com.tm.util.ObjectUtil;
  */
 @RestController
 @RequestMapping(CtrlConst.URI_API_VERSION)
+@Api(value = "user", tags = { "user" })
 public class UserSignupRestController extends BaseRestController{
 
 	@Autowired
@@ -38,13 +41,14 @@ public class UserSignupRestController extends BaseRestController{
 
 	/**
 	 * 実行メソッド
-	 * @param UserRegistRequestDto user
-	 * @return UserRegistResponseDto
+	 * @param user ユーザ登録リクエストデータ
+	 * @return ユーザ登録レスポンスデータ
 	 */
 	@RequestMapping(value = CtrlConst.FUNC_USERS + CtrlConst.MAP_SIGNUP, consumes = MediaType.APPLICATION_JSON_VALUE, method = RequestMethod.POST)
 	@ResponseBody
 	@CrossOrigin
 	@ResponseStatus(HttpStatus.CREATED)
+	@ApiOperation(value="ユーザを新規登録します。", tags = { "user" })
 	public UserRegistResponseDto register(@RequestBody UserRegistRequestDto user) throws Exception {
 		//------------------------------------
 		// 入力内容の検査

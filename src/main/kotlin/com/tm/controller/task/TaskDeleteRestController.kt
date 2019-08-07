@@ -11,6 +11,8 @@ import com.tm.dto.common.ServiceOut
 import com.tm.exception.TaskManagerErrorRuntimeException
 import com.tm.service.TaskDeleteService
 import com.tm.util.InputInspector
+import io.swagger.annotations.Api
+import io.swagger.annotations.ApiOperation
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.http.HttpStatus
 import org.springframework.web.bind.annotation.*
@@ -20,6 +22,7 @@ import org.springframework.web.bind.annotation.*
  */
 @RestController
 @RequestMapping(CtrlConst.URI_API_VERSION)
+@Api(value = "task", tags = ["task"])
 class TaskDeleteRestController : BaseRestController() {
 
     @Autowired
@@ -32,6 +35,7 @@ class TaskDeleteRestController : BaseRestController() {
     @ResponseBody
     @CrossOrigin
     @ResponseStatus(HttpStatus.ACCEPTED)
+    @ApiOperation(value="タスクを削除します。", tags = [ "task" ])
     @Throws(Exception::class)
     fun delete(@RequestBody req: TaskDeleteRequestDto?): TaskDeleteResponseDto {
         //------------------------------------

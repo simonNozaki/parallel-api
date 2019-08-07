@@ -3,6 +3,8 @@ package com.tm.controller.user;
 import java.util.Optional;
 
 import com.tm.consts.AppConst;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -31,6 +33,7 @@ import com.tm.util.ObjectUtil;
  */
 @RestController
 @RequestMapping(CtrlConst.URI_API_VERSION)
+@Api(value = "user", tags = { "user" })
 public class UserSigninRestController extends BaseRestController {
 
     @Autowired
@@ -38,14 +41,15 @@ public class UserSigninRestController extends BaseRestController {
 
     /**
      * 実行メソッド
-     * @param UserAuthenticationRequestDto 利用者認証処理のリクエストデータ
-     * @return UserAUthenticationResponseDto 利用者認証処理の結果データ
+     * @param req 利用者認証処理のリクエストデータ
+     * @return 利用者認証処理の結果データ
      * @throws Exception
      */
     @RequestMapping(value = CtrlConst.FUNC_USERS + CtrlConst.MAP_SIGNIN, consumes = MediaType.APPLICATION_JSON_VALUE, method = RequestMethod.POST)
     @ResponseBody
     @CrossOrigin
     @ResponseStatus(HttpStatus.OK)
+    @ApiOperation(value="ユーザの認証を実施します。", tags = { "user" })
     public UserAuthenticationResponseDto signin(@RequestBody UserAuthenticationRequestDto req) throws Exception {
         //------------------------------------
         // 入力内容の検査
