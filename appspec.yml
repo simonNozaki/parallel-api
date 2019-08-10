@@ -5,6 +5,6 @@ files:
     destination: /workspace/bin/apache-tomcat-8.0.53/webapps
 hooks:
   BeforeInstall:
-    - location: script/stop-tomcat.sh
+    - location: scripts/stop-tomcat.sh
   ApplicationStart:
-    - location: script/start-tomcat.sh
+    - location: scripts/start-tomcat.sh

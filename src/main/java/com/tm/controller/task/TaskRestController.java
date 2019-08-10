@@ -3,6 +3,8 @@ package com.tm.controller.task;
 import java.util.Optional;
 
 import com.tm.consts.AppConst;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -32,20 +34,21 @@ import com.tm.util.ObjectUtil;
  */
 @RestController
 @RequestMapping(CtrlConst.URI_API_VERSION)
+@Api(value = "task", tags = { "task" })
 public class TaskRestController extends BaseRestController {
 
     @Autowired
     private TaskRegisterService registTaskService;
 
     /** 新規タスクを登録します.
-     * @param TaskRegistRequestDto task
+     * @param task タスク情報
      * @return RegistTaskResponseDto
      * @throws Exception
      */
     @RequestMapping(value = CtrlConst.FUNC_TASKS + CtrlConst.MAP_REGIST, consumes = MediaType.APPLICATION_JSON_VALUE, method = RequestMethod.POST)
     @ResponseBody
-    @CrossOrigin
     @ResponseStatus(HttpStatus.CREATED)
+    @ApiOperation(value="新規タスクを登録します。", tags = { "task" })
     public TaskRegistResponseDto register(@RequestBody TaskRegistRequestDto task) throws Exception {
         //------------------------------------
         // 入力内容の検査

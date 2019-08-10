@@ -3,6 +3,8 @@ package com.tm.controller.task;
 import java.util.List;
 
 import com.tm.consts.AppConst;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -29,20 +31,21 @@ import com.tm.util.ObjectUtil;
  */
 @RestController
 @RequestMapping(CtrlConst.URI_API_VERSION)
+@Api(value = "task", tags = { "task" })
 public class TaskFetchRestController extends BaseRestController {
 
     @Autowired
     private FetchTaskService fetchTaskService;
 
     /** 利用者に紐づくタスクの一覧を取得します.
-     * @param String userId
+     * @param userId ユーザID
      * @return FetchTaskResponseDto
      * @throws Exception
      */
     @RequestMapping(value = CtrlConst.FUNC_TASKS + CtrlConst.MAP_FETCH, method = RequestMethod.GET)
     @ResponseBody
-    @CrossOrigin
     @ResponseStatus(HttpStatus.ACCEPTED)
+    @ApiOperation(value="登録されているタスクを取得します。", tags = { "task" })
     public TaskFetchResponseDto fetch(@RequestParam("userId") String userId) throws Exception {
         //------------------------------------
         // 入力内容の検査

@@ -3,6 +3,8 @@ package com.tm.controller.task;
 import java.util.List;
 
 import com.tm.consts.AppConst;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -29,6 +31,7 @@ import com.tm.util.ObjectUtil;
  */
 @RestController
 @RequestMapping(CtrlConst.URI_API_VERSION)
+@Api(value = "tasklabel", tags = { "tasklabel" })
 public class TaskLabelFetchRestController extends BaseRestController {
 
     @Autowired
@@ -41,8 +44,8 @@ public class TaskLabelFetchRestController extends BaseRestController {
      */
     @RequestMapping(value = CtrlConst.FUNC_TASKS + CtrlConst.FUNC_TASKS_LABEL, method = RequestMethod.GET)
     @ResponseBody
-    @CrossOrigin
     @ResponseStatus(HttpStatus.ACCEPTED)
+    @ApiOperation(value="登録されているタスクラベルを取得します。", tags = { "tasklabel" })
     public TaskLabelFetchResponseDto fetch(@RequestParam("userId") String userId) throws Exception {
         //------------------------------------
         // 入力内容の検査

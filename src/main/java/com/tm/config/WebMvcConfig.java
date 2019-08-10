@@ -50,10 +50,11 @@ public class WebMvcConfig extends WebMvcConfigurerAdapter {
      */
     @Override
     public void addCorsMappings(CorsRegistry registry) {
-        registry.addMapping("/**")
+        registry.addMapping("/api/v1/**")
             .allowedMethods("GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS")
             .allowedHeaders("*")
-            .allowedOrigins("*");
+            .allowedOrigins("http://localhost")
+                .allowedOrigins("http://task.parallel-stream.com");
     }
 
     /**

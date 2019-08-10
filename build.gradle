@@ -212,7 +212,3 @@ test {
     jvmArgs=['-Dspring.profile.active=test']
 }
 
-
-bootRun {
-    // systemProperty "spring.profile.active", "dev"
-}

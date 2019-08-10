@@ -3,6 +3,8 @@ package com.tm.controller.task;
 import java.util.stream.Stream;
 
 import com.tm.consts.AppConst;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -31,6 +33,7 @@ import com.tm.util.ObjectUtil;
  */
 @RestController
 @RequestMapping(CtrlConst.URI_API_VERSION)
+@Api(value = "tasklabel", tags = { "tasklabel" })
 public class TaskLabelRestController extends BaseRestController {
 
     @Autowired
@@ -44,8 +47,8 @@ public class TaskLabelRestController extends BaseRestController {
      */
     @RequestMapping(value = CtrlConst.FUNC_TASKS + CtrlConst.FUNC_TASKS_LABEL, consumes = MediaType.APPLICATION_JSON_VALUE, method = RequestMethod.POST)
     @ResponseBody
-    @CrossOrigin
     @ResponseStatus(HttpStatus.CREATED)
+    @ApiOperation(value="タスクラベルを新規登録します。", tags = { "tasklabel" })
     public TaskLabelRegisterResponseDto register(@RequestBody TaskLabelRegisterRequestDto label) throws Exception {
         //------------------------------------
         // 入力内容の検査
