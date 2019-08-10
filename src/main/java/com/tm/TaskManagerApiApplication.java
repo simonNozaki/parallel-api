@@ -10,7 +10,16 @@ import org.springframework.context.annotation.ComponentScan;
 @SpringBootApplication
 @EnableAutoConfiguration(exclude = {DataSourceAutoConfiguration.class,
 		HibernateJpaAutoConfiguration.class})
-@ComponentScan({"com.tm.dao","com.tm.service","com.tm.controller","com.tm.config, com.tm.interceptor, com.tm.exception, com.tm.filter"})
+@ComponentScan({
+		"com.tm.dao",
+		"com.tm.dto",
+		"com.tm.service",
+		"com.tm.controller",
+		"com.tm.config",
+		"com.tm.interceptor",
+		"com.tm.exception",
+		"com.tm.filter"
+})
 public class TaskManagerApiApplication {
 
 	public static void main(String[] args) {

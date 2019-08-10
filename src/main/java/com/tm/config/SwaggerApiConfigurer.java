@@ -27,8 +27,8 @@ public class SwaggerApiConfigurer {
 
     private ApiInfo apiInfo(){
         return new ApiInfoBuilder()
-                .title("Boot Camp Web App")
-                .description("The document for Boot Camp Web application")
+                .title("Parallel ")
+                .description("The document for Parallel API")
                 .version("1.0.0")
                 .build();
     }

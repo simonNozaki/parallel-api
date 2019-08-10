@@ -32,7 +32,7 @@ public class GlobalErrorHandler extends ResponseEntityExceptionHandler{
 
     /**
      * APIのシステムエラーを処理します。
-     * @param TaskManagerErrorRuntimeException e
+     * @param e TaskManagerErrorRuntimeExceptionのインスタンス
      * @throws Exception
      * @throws SecurityException
      */
