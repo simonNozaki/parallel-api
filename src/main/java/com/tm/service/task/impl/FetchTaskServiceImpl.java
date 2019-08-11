@@ -24,7 +24,7 @@ public class FetchTaskServiceImpl extends BaseService implements FetchTaskServic
 	TaskRepository taskRepository;
 
 	/** 利用者IDに紐づくタスクのリストを取得します.
-     * @param String userId
+     * @param userId ユーザID
      * @return List タスクの取得結果
      * @throws Exception
      */

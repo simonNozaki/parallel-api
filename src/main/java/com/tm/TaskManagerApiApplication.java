@@ -12,6 +12,7 @@ import org.springframework.context.annotation.ComponentScan;
 		HibernateJpaAutoConfiguration.class})
 @ComponentScan({
 		"com.tm.dao",
+		"com.tm.dao.repository",
 		"com.tm.service",
 		"com.tm.controller",
 		"com.tm.config",

@@ -56,7 +56,7 @@
 		</rollingPolicy>
 		<encoder>
 			<charset>UTF-8</charset>
-			<pattern>%d{yyyy-MM-dd HH:mm:ss} %-14(${logback.hostname}) ${logback.appname} %-5level %X{logCode} %X{className}#%X{methodName} : %X{jsonBody} %n</pattern>
+			<pattern>%d{yyyy-MM-dd HH:mm:ss} %-14(${logback.hostname}) ${logback.appname} %-5level %X{logCode} %X{className}#%X{methodName} : %X{logMessage} %X{jsonBody} %n</pattern>
 		</encoder>
 	</appender>
 

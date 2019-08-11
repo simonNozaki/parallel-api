@@ -27,7 +27,7 @@ import org.springframework.web.bind.annotation.*
 class TaskDeleteRestController : BaseRestController() {
 
     @Autowired
-    lateinit var taskDeleteServcie: TaskDeleteService
+    lateinit var taskDeleteService: TaskDeleteService
 
     /**
      * 実行メソッド
@@ -56,7 +56,7 @@ class TaskDeleteRestController : BaseRestController() {
         // サービスクラスの実行およびレスポンス処理
         //------------------------------------
         return BaseRestController.responseProcessBuilder<TaskDeleteResponseDto>()
-                .executeService<String>(taskDeleteServcie.delete(req))
+                .executeService<String>(taskDeleteService.delete(req))
                 .map<ServiceOut<String>, TaskDeleteResponseDto> { taskId: String, error: Errors -> TaskDeleteResponseDto(taskId, error)}
                 .log<TaskDeleteResponseDto>()
                 .apply()
