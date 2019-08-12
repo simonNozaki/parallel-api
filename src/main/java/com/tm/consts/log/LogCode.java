@@ -31,6 +31,16 @@ public enum LogCode {
 	TMFWCM00022("TMFWCM00022", "Serviceの処理を終了します。"),
 
 	/**
+     * Repositoryへのアクセスを開始します。
+     */
+    TMFWCM00031("TMFWCM00031", "Repositoryへのアクセスを開始します。"),
+
+    /**
+     * Repositoryへのアクセスを終了します。
+     */
+    TMFWCM00032("TMFWCM00032", "Repositoryへのアクセスを終了します。"),
+
+	/**
 	 * 業務処理中にエラーが発生しました。
 	 */
 	TMFWCM90000("TMFWCM90000", "業務処理中にエラーが発生しました。"),

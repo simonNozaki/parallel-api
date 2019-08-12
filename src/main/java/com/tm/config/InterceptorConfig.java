@@ -12,12 +12,12 @@ import com.tm.interceptor.ServiceInterceptor;
  * サービスインターセプターのBean定義クラス
  */
 @Configuration
-public class ServiceInterceptorConfig {
+public class InterceptorConfig {
 
     @Bean
     public Advisor advisor() {
         AspectJExpressionPointcut pointcut = new AspectJExpressionPointcut();
-        pointcut.setExpression("execution(public * com.tm.service..*Service.*(..))");
+        pointcut.setExpression("execution(public * com.tm.service..*Service.*(..)) || execution(public * com.tm.dao..*Repository.*(..))");
         return new DefaultPointcutAdvisor(pointcut, new ServiceInterceptor());
     }
 }
