@@ -35,7 +35,7 @@ public class GlobalLoggingFilter extends OncePerRequestFilter {
         try{
             filterChain.doFilter(request, response);
         }catch (Exception e){
-            AppLogger.trace(LogCode.TMFWCM00022, null, elm[0].getClassName(), elm[0].getMethodName().toString(), null);
+            AppLogger.error(LogCode.TMFWCM00022, e, elm[0].getClassName(), elm[0].getMethodName());
         }finally {
             // リクエストのロギング
             if(!ObjectUtil.isNullOrEmpty(wrappedRequest)){
@@ -65,7 +65,7 @@ public class GlobalLoggingFilter extends OncePerRequestFilter {
             msg.append('?').append(req.getQueryString());
         }
 
-        AppLogger.traceTelegram(LogCode.TMFWCM80005, elm[0].getClassName(), elm[0].getMethodName().toString(), msg.toString());
+        AppLogger.trace(LogCode.TMFWCM80005, null, elm[0].getClassName(), elm[0].getMethodName(), msg.toString());
     }
 
     /**
@@ -78,7 +78,7 @@ public class GlobalLoggingFilter extends OncePerRequestFilter {
         // リクエストID
         msg.append("id=").append(res.getId()).append(AppConst.STR_SEMI_COLON + AppConst.STR_SPACE);
 
-        AppLogger.traceTelegram(LogCode.TMFWCM80006, elm[0].getClassName(), elm[0].getMethodName().toString(), msg.toString());
+        AppLogger.trace(LogCode.TMFWCM80006, null, elm[0].getClassName(), elm[0].getMethodName(), msg.toString());
     }
 }
 

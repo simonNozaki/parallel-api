@@ -20,9 +20,9 @@ import org.springframework.context.annotation.ComponentScan;
 		"com.tm.exception",
 		"com.tm.filter"
 })
-public class TaskManagerApiApplication {
+public class ParallelApiApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(TaskManagerApiApplication.class, args);
+		SpringApplication.run(ParallelApiApplication.class, args);
 	}
 }

@@ -4,8 +4,7 @@ import com.tm.consts.AppConst
 import com.tm.consts.error.TaskManagerErrorCode
 import com.tm.dao.repository.TaskRepository
 import com.tm.dto.Task
-import com.tm.dto.TaskExample
-import com.tm.dto.bean.task.TaskDeleteRequestDto
+import com.tm.dto.bean.TaskDeleteRequestDto
 import com.tm.dto.common.ServiceOut
 import com.tm.service.TaskDeleteService
 import com.tm.service.framework.BaseService
@@ -13,7 +12,6 @@ import com.tm.util.ObjectUtil
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
 import java.lang.Exception
-import javax.inject.Inject
 
 /**
  * タスク削除サービス実装クラス。

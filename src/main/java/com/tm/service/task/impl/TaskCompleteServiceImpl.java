@@ -1,6 +1,7 @@
 package com.tm.service.task.impl;
 
 import com.tm.consts.AppConst;
+import com.tm.dao.TaskMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,6 +21,8 @@ public class TaskCompleteServiceImpl extends BaseService implements TaskComplete
 
     @Autowired
     TaskRepository taskRepository;
+    @Autowired
+    TaskMapper taskMapper;
 
     @Override
     public ServiceOut<String> execute(TaskCompleteRequestDto req) throws Exception {
@@ -27,7 +30,7 @@ public class TaskCompleteServiceImpl extends BaseService implements TaskComplete
         Task target = new Task();
         target.setTaskId(req.getTaskId());
         target.setCompletedFlag(AppConst.TASK_COMPLETED_FLAG_COMPLETED);
-        int updatedResult = taskRepository.updateByPrimaryKeySelective(target);
+        int updatedResult = taskMapper.updateByPrimaryKeySelective(target);
 
         // レスポンスチェック
         if (ObjectUtil.isNullOrEmpty(updatedResult) || updatedResult == 0) {
@@ -49,7 +52,7 @@ public class TaskCompleteServiceImpl extends BaseService implements TaskComplete
         }
 
         // 履歴テーブルに登録したタスクを削除します。
-        int deletedResult = taskRepository.deleteByPrimaryKey(insertedTask.getTaskId());
+        int deletedResult = taskMapper.deleteByPrimaryKey(insertedTask.getTaskId());
 
         // レスポンスチェック
         if (ObjectUtil.isNullOrEmpty(deletedResult) || deletedResult == 0) {

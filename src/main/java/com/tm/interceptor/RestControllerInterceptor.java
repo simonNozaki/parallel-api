@@ -24,7 +24,6 @@ public class RestControllerInterceptor extends HandlerInterceptorAdapter{
             ObjectMapper mapper = new ObjectMapper();
             AppLogger.trace(LogCode.TMFWCM00011, null, getCastedClassNmeForHnadlerMethod(handler), getCastedMethodNmeForHnadlerMethod(handler),
                     mapper.writeValueAsString(((HandlerMethod) handler).getBean()));
-                    // null);
         } else {
             AppLogger.trace(LogCode.TMFWCM00011, null, getCastedClassNmeForHnadlerMethod(handler), getCastedMethodNmeForHnadlerMethod(handler), null);
         }

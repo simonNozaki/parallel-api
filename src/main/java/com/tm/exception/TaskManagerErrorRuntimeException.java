@@ -33,7 +33,7 @@ public class TaskManagerErrorRuntimeException extends RuntimeException {
 
     /**
      * デフォルトコンストラクタ。エラーコードリストを引数に取ります。
-     * @param List<?> errorsList
+     * @param errors
      */
     public TaskManagerErrorRuntimeException(Errors errors) {
     	super();

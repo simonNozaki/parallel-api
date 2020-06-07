@@ -4,7 +4,7 @@ import com.tm.consts.AppConst
 import com.tm.consts.CtrlConst
 import com.tm.consts.error.TaskManagerErrorCode
 import com.tm.controller.framework.BaseRestController
-import com.tm.dto.bean.task.TaskDeleteRequestDto
+import com.tm.dto.bean.TaskDeleteRequestDto
 import com.tm.dto.bean.task.TaskDeleteResponseDto
 import com.tm.dto.common.Errors
 import com.tm.dto.common.ServiceOut
@@ -24,10 +24,7 @@ import org.springframework.web.bind.annotation.*
 @RestController
 @RequestMapping(CtrlConst.URI_API_VERSION)
 @Api(value = "task", tags = ["task"])
-class TaskDeleteRestController : BaseRestController() {
-
-    @Autowired
-    lateinit var taskDeleteService: TaskDeleteService
+class TaskDeleteRestController (private val taskDeleteService: TaskDeleteService) : BaseRestController() {
 
     /**
      * 実行メソッド
@@ -37,25 +34,28 @@ class TaskDeleteRestController : BaseRestController() {
     @ResponseStatus(HttpStatus.ACCEPTED)
     @ApiOperation(value="タスクを削除します。", tags = [ "task" ])
     @Throws(Exception::class)
-    fun delete(@RequestBody req: TaskDeleteRequestDto?): TaskDeleteResponseDto {
+    fun delete(@RequestBody req: TaskDeleteRequestDto): TaskDeleteResponseDto {
+
+        println(req)
+
         //------------------------------------
         // 入力内容の検査
         //------------------------------------
-        var errors: Errors = InputInspector.of<TaskDeleteRequestDto>(req)
+        val errors: Errors = InputInspector.of<TaskDeleteRequestDto>(req)
                 .logInput<TaskDeleteRequestDto>(req)
-                .isNull<String>(req?.taskId, TaskManagerErrorCode.ERR210001.code)
-                .violateSpecificLength<String>(req?.taskId, AppConst.TASK_ID_LENGTH, TaskManagerErrorCode.ERR210003.code)
+                .isNull<String>(req.taskId, TaskManagerErrorCode.ERR210001.code)
+                .violateSpecificLength<String>(req.taskId, AppConst.TASK_ID_LENGTH, TaskManagerErrorCode.ERR210003.code)
                 .build()
 
         //------------------------------------
         // エラーがある場合レスポンス作成処理
         //------------------------------------
-        if(errors.codes.isNotEmpty()) throw TaskManagerErrorRuntimeException(errors);
+        if(errors.codes.isNotEmpty()) throw TaskManagerErrorRuntimeException(errors)
 
         //------------------------------------
         // サービスクラスの実行およびレスポンス処理
         //------------------------------------
-        return BaseRestController.responseProcessBuilder<TaskDeleteResponseDto>()
+        return responseProcessBuilder<TaskDeleteResponseDto>()
                 .executeService<String>(taskDeleteService.delete(req))
                 .map<ServiceOut<String>, TaskDeleteResponseDto> { taskId: String, error: Errors -> TaskDeleteResponseDto(taskId, error)}
                 .log<TaskDeleteResponseDto>()

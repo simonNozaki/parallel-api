@@ -21,11 +21,14 @@ import java.util.ArrayList;
 
 /**
  * JWT認証フィルタークラス
+ * ログインメソッドが呼び出されたときにフィルターされる
+ * 認証情報があればJWTを発行する
  */
 public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilter {
 
     private AuthenticationManager authenticationManager;
     private BCryptPasswordEncoder bCryptPasswordEncoder;
+    private StackTraceElement[] elm = new Throwable().getStackTrace();
 
     /**
      * デフォルトコンストラクタ
@@ -55,7 +58,7 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
                     new ArrayList()
             ));
         }catch (Exception e) {
-            AppLogger.error(LogCode.TMFWCM90000, e, this.getClass().getCanonicalName(), "attemptAuthentication");
+            AppLogger.error(LogCode.TMFWCM90000, e, elm[0].getClass().getCanonicalName(), elm[0].getMethodName());
         }finally {
             return null;
         }

@@ -3,6 +3,7 @@ package com.tm.service.user.impl;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.tm.dao.UsersMapper;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -29,6 +30,8 @@ public class UseSignupServiceImpl extends BaseService implements UserSignupServi
 
 	@Autowired
 	UserRepository userRepository;
+	@Autowired
+	UsersMapper usersMapper;
 
 	@Override
 	public ServiceOut<Users> execute(UserRegistRequestDto user) throws Exception{
@@ -63,13 +66,13 @@ public class UseSignupServiceImpl extends BaseService implements UserSignupServi
 
 	/**
 	 * 同一メールアドレスのユーザがいれば取得して返却します。
-	 * @param UserRegistRequestDto user
+	 * @param user ユーザ登録依頼DTO
 	 * @return List<Users>
 	 */
 	private List<Users> hasRegisteredEmail(UserRegistRequestDto user) {
 		UsersExample usersExample = new UsersExample();
 		usersExample.createCriteria().andEmailEqualTo(user.getEmail());
-		return userRepository.selectByExample(usersExample);
+		return usersMapper.selectByExample(usersExample);
 	}
 
 }

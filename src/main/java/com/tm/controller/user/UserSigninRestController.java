@@ -74,7 +74,7 @@ public class UserSigninRestController extends BaseRestController {
         return responseProcessBuilder().executeService(userAuthenticationService.execute(req))
                    .map((Users user, Errors error) -> {
                        UserAuthenticationResponseDto res = new UserAuthenticationResponseDto();
-                       Optional.ofNullable(error).ifPresent((Errors errs) -> res.setErrors(errs));
+                       Optional.ofNullable(error).ifPresent(res::setErrors);
                        Optional.ofNullable(user).ifPresent((Users users) -> {
                            res.setUserId(users.getUserId());
                            res.setEmail(users.getEmail());

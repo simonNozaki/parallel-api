@@ -2,6 +2,7 @@ package com.tm.service.task.impl;
 
 import java.util.List;
 
+import com.tm.dao.TaskMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,7 +21,7 @@ import com.tm.service.task.FetchTaskService;
 public class FetchTaskServiceImpl extends BaseService implements FetchTaskService {
 
 	@Autowired
-	TaskRepository taskRepository;
+	TaskMapper taskMapper;
 
 	/** 利用者IDに紐づくタスクのリストを取得します.
      * @param userId ユーザID
@@ -31,7 +32,7 @@ public class FetchTaskServiceImpl extends BaseService implements FetchTaskServic
 	    // ユーザIDに紐づくタスクの一覧を取得します。
 		TaskExample taskExample = new TaskExample();
 		taskExample.createCriteria().andUserIdEqualTo(userId).andCompletedFlagEqualTo(AppConst.TASK_COMPLETED_FLAG_NOT_COMPLETED);
-		List<Task>  taskList = taskRepository.selectByExample(taskExample);
+		List<Task>  taskList = taskMapper.selectByExample(taskExample);
 
 		// 結果の返却
 		return doPipeServiceOut()

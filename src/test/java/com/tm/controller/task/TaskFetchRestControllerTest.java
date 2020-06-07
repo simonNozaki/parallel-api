@@ -18,11 +18,11 @@ import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
-import com.tm.TaskManagerApiApplication;
+import com.tm.ParallelApiApplication;
 import com.tm.controller.framework.BaseControllerTestUtil;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@SpringBootTest(classes=TaskManagerApiApplication.class)
+@SpringBootTest(classes= ParallelApiApplication.class)
 @ActiveProfiles(profiles="unit")
 public class TaskFetchRestControllerTest extends BaseControllerTestUtil {
 
